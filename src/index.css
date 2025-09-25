@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+a:-webkit-any-link {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+
+nav a {text-decoration: none;} 
