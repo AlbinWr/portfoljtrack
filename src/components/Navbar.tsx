@@ -71,7 +71,7 @@ export const Navbar = () => {
         </NavLink>
 
         <NavLink
-          to="/Contact"
+          to="/kontakt"
           className={({ isActive }) =>
             isActive
               ? "relative py-1 px-3 text-lg font-light text-sky-300 rounded-2xl bg-slate-700 transition duration-300 group"
@@ -82,7 +82,7 @@ export const Navbar = () => {
           <MdContactSupport   className="text-xl sm:hidden" />
 
           {/* Text för desktop */}
-          <span className="hidden sm:inline">Kontakt</span>
+          <span className="hidden sm:inline">Kontakta</span>
 
           {/* Effekt */}
           <span className="absolute left-0 -bottom-1 h-[2px] w-full origin-center scale-x-0 bg-sky-300 transition-transform duration-300 group-hover:scale-x-100"></span>
