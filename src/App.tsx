@@ -9,8 +9,8 @@ import { PortfoljProvider } from "./context/portfoljContext";
 
 function App() {
   return (
-    <PortfoljProvider>
-      <SaldoProvider>
+    <SaldoProvider>
+      <PortfoljProvider>
         <Navbar />
         <div className="min-h-screen flex flex-col bg-slate-900">
           <Routes>
@@ -20,8 +20,8 @@ function App() {
             <Route path="/kontakt" element={<Kontakta />} />
           </Routes>
         </div>
-      </SaldoProvider>
-    </PortfoljProvider>
+      </PortfoljProvider>
+    </SaldoProvider>
   );
 }
 

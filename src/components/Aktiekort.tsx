@@ -1,9 +1,12 @@
 import type { AktieSeed } from "../Data/seedAktier";
 import { usePortfolj } from "../context/portfoljContext";
+import { useState } from "react";
 
 export function Aktiekort({ item }: { item: AktieSeed }) {
   const { getAntal, kop, salj } = usePortfolj();
   const antalAktier = getAntal(item.ticker);
+
+  const [antal, setAntal] = useState(1);
 
   return (
     <div className="rounded-xl border border-slate-700 bg-slate-800 p-4 text-slate-100 shadow hover:shadow-lg transition-shadow duration-300">
@@ -36,16 +39,28 @@ export function Aktiekort({ item }: { item: AktieSeed }) {
           </div>
         </div>
 
+        {/* Inputfält för antal */}
+        <div className="mt-3 flex items-center gap-2">
+          <label className="text-sm">Antal:</label>
+          <input
+            type="number"
+            min="1"
+            value={antal}
+            onChange={(e) => setAntal(Number(e.target.value))}
+            className="w-16 rounded bg-slate-700 px-2 py-1 text-center text-white"
+          />
+        </div>
+
         {/* Köp/Sälj knappar */}
         <div className="flex flex-col gap-2">
           <button
-            onClick={() => kop(item.ticker)}
+            onClick={() => {kop(item.ticker, item.pris, antal); setAntal(1)}}
             className="rounded-md bg-emerald-500 px-4 py-2 text-sm font-semibold text-white shadow hover:bg-emerald-600 transition duration-200"
           >
             Köp
           </button>
           <button
-            onClick={() => salj(item.ticker)}
+            onClick={() => {salj(item.ticker, item.pris, antal); setAntal(1)}}
             disabled={antalAktier === 0}
             className={`rounded-md px-4 py-2 text-sm font-semibold text-white shadow transition duration-200 ${
               antalAktier > 0
