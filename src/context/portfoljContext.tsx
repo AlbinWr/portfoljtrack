@@ -12,6 +12,7 @@ type PortfoljItem = {
 }
 
 type PortfoljContext = {
+  portfolj: PortfoljItem[]
   getAntal: (ticker: string) => number
   kop: (ticker: string, pris: number, antal: number) => void
   salj: (ticker: string, pris: number, antal: number) => void
@@ -81,7 +82,7 @@ function salj(ticker: string, pris: number, antal: number) {
   }
 
   return (
-    <PortfoljContext.Provider value={{ getAntal, kop, salj, removeItem }}>
+    <PortfoljContext.Provider value={{ portfolj, getAntal, kop, salj, removeItem }}>
       {children}
     </PortfoljContext.Provider>
   )
