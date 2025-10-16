@@ -1,10 +1,11 @@
 import { useSaldo } from "../hooks/useSaldo";
 import { usePortfolj } from "../context/portfoljContext";
-import { getAktiePris } from "../utilities/getAktiePris";
+import { useAktieMarknad } from "../context/aktieMarknadContext";
 
 export const Home = () => {
   const { saldo } = useSaldo();
   const { portfolj } = usePortfolj();
+  const { getAktiePris } = useAktieMarknad();
 
   const portfoljVarde = portfolj.reduce((sum, aktie) => {
     const pris = getAktiePris(aktie.ticker);
@@ -15,7 +16,7 @@ export const Home = () => {
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center bg-gradient-to-bl from-slate-900 via-sky-950 to-slate-900 pt-20">
-      <h1 className="text-4xl font-bold text-white mb-8">Din portfölj</h1>
+      <h1 className="text-4xl font-bold text-white mb-8">Portfölj</h1>
 
       {/* Summering högst upp */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-4xl">
@@ -73,9 +74,15 @@ export const Home = () => {
                       <td className="p-3 font-medium text-sky-300">
                         {aktie.ticker}
                       </td>
-                      <td className="p-3 text-right text-gray-200">{aktie.antal}</td>
-                      <td className="p-3 text-right text-gray-200">{aktie.inkopsPris} SEK</td>
-                      <td className="p-3 text-right text-gray-200">{nuPris} SEK</td>
+                      <td className="p-3 text-right text-gray-200">
+                        {aktie.antal}
+                      </td>
+                      <td className="p-3 text-right text-gray-200">
+                        {aktie.inkopsPris} SEK
+                      </td>
+                      <td className="p-3 text-right text-gray-200">
+                        {nuPris} SEK
+                      </td>
                       <td className="p-3 text-right font-semibold text-gray-200">
                         {varde.toLocaleString("sv-SE")} SEK
                       </td>

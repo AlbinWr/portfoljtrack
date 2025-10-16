@@ -1,10 +1,13 @@
 import type { AktieSeed } from "../Data/seedAktier";
 import { usePortfolj } from "../context/portfoljContext";
 import { useState } from "react";
+import { useAktieMarknad } from "../context/aktieMarknadContext";
 
 export function Aktiekort({ item }: { item: AktieSeed }) {
   const { getAntal, kop, salj } = usePortfolj();
   const antalAktier = getAntal(item.ticker);
+  const { getAktiePris } = useAktieMarknad();
+  const aktuelltPris = getAktiePris(item.ticker);
 
   const [antal, setAntal] = useState(1);
 
@@ -25,7 +28,7 @@ export function Aktiekort({ item }: { item: AktieSeed }) {
       <div className="mt-3 flex items-center justify-between text-sm">
         <div className="flex flex-col">
           <div>
-            Pris: <span className="font-medium">{item.pris} SEK</span>
+            Pris: <span className="font-medium">{aktuelltPris} SEK</span>
           </div>
           <div>
             Volatilitet:{" "}
@@ -54,17 +57,19 @@ export function Aktiekort({ item }: { item: AktieSeed }) {
         {/* Köp/Sälj knappar */}
         <div className="flex flex-col gap-2">
           <button
-            onClick={() => {kop(item.ticker, item.pris, antal); setAntal(1)}}
-            className="rounded-md bg-emerald-500 px-4 py-2 text-sm font-semibold text-white shadow hover:bg-emerald-600 transition duration-200"
+            onClick={() => {kop(item.ticker, aktuelltPris, antal); setAntal(1)}}
+            className="rounded-md bg-emerald-500 px-4 py-2 text-sm font-semibold text-white shadow 
+             hover:bg-emerald-600 active:scale-95 active:bg-emerald-700 active:shadow-inner 
+             transition duration-150"
           >
             Köp
           </button>
           <button
-            onClick={() => {salj(item.ticker, item.pris, antal); setAntal(1)}}
+            onClick={() => {salj(item.ticker, aktuelltPris, antal); setAntal(1)}}
             disabled={antalAktier === 0}
-            className={`rounded-md px-4 py-2 text-sm font-semibold text-white shadow transition duration-200 ${
+            className={`rounded-md px-4 py-2 text-sm font-semibold text-white shadow transition duration-150 ${
               antalAktier > 0
-                ? "bg-red-500 hover:bg-red-600"
+                ? "bg-red-500 hover:bg-red-600 active:scale-95 active:bg-red-700 active:shadow-inner"
                 : "bg-gray-600 cursor-not-allowed opacity-50"
             }`}
           >

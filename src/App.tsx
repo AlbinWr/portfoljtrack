@@ -6,20 +6,26 @@ import { Installningar } from "./routes/Installningar";
 import { SaldoProvider } from "./context/SaldoContext";
 import { Kontakta } from "./routes/Kontakta";
 import { PortfoljProvider } from "./context/portfoljContext";
+import { AktieMarknadProvider } from "./context/aktieMarknadContext";
+import { Toaster } from "react-hot-toast";
+  
 
 function App() {
   return (
     <SaldoProvider>
       <PortfoljProvider>
-        <Navbar />
-        <div className="min-h-screen flex flex-col bg-slate-900">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/aktier" element={<Aktier />} />
-            <Route path="/installningar" element={<Installningar />} />
-            <Route path="/kontakt" element={<Kontakta />} />
-          </Routes>
-        </div>
+        <AktieMarknadProvider>
+          <Navbar />
+          <div className="min-h-screen flex flex-col bg-slate-900">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/aktier" element={<Aktier />} />
+              <Route path="/installningar" element={<Installningar />} />
+              <Route path="/kontakt" element={<Kontakta />} />
+            </Routes>
+          </div>
+          <Toaster position="bottom-right" />
+        </AktieMarknadProvider>
       </PortfoljProvider>
     </SaldoProvider>
   );
