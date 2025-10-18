@@ -18,8 +18,8 @@ export const Home = () => {
   
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center bg-gradient-to-bl from-slate-900 via-sky-950 to-slate-900 pt-20 pb-10">
-      <h1 className="text-4xl font-bold text-gray-200 mb-8">Portfölj</h1>
+    <div className="w-full max-w-5xl mx-auto flex flex-col items-start gap-5 text-slate-100 px-4">
+      <h1 className="text-4xl font-bold">Portfölj</h1>
 
       {/* Summering högst upp */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-4xl px-4 mb-8 z-50">
@@ -118,3 +118,5 @@ export const Home = () => {
     </div>
   );
 };
+
+

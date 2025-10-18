@@ -16,17 +16,23 @@ function App() {
     <SaldoProvider>
       <PortfoljProvider>
         <AktieMarknadProvider>
-          <Navbar />
-          <div className="min-h-screen flex flex-col bg-slate-900">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/aktier" element={<Aktier />} />
-              <Route path="/installningar" element={<Installningar />} />
-              <Route path="/kontakt" element={<Kontakta />} />
-            </Routes>
-            <WaveBakgrund />
-          </div>
-          <Toaster position="bottom-right" />
+          <div className="relative min-h-screen flex flex-col bg-gradient-to-bl from-slate-900 via-sky-950 to-slate-900">
+            <Navbar />
+
+              {/* Huvudinnehåll */}
+              <main className="relative z-10 flex-1 pt-24 pb-10">
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/aktier" element={<Aktier />} />
+                  <Route path="/installningar" element={<Installningar />} />
+                  <Route path="/kontakt" element={<Kontakta />} />
+                </Routes>
+              </main>
+
+              {/* Bakgrundsvåg och Toaster */}
+              <WaveBakgrund />
+              <Toaster position="bottom-right" />
+            </div>
         </AktieMarknadProvider>
       </PortfoljProvider>
     </SaldoProvider>
