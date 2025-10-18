@@ -1,21 +1,33 @@
+import React from "react";
 import { Sokfalt } from "../components/Sokfalt";
 import { seedAktier } from "../Data/seedAktier";
 import { Aktiekort } from "../components/Aktiekort";
 
-
 export const Aktier = () => {
+  const [sok, setSok] = React.useState("");
+
+  const filtreradeAktier = seedAktier.filter((item) =>
+    item.namn.toLowerCase().includes(sok.toLowerCase()) ||
+    item.ticker.toLowerCase().includes(sok.toLowerCase())
+  );
+
   return (
       <div className="mx-auto max-w-5xl px-4 z-10 text-slate-100">
         <h1 className="text-3xl font-bold">Aktier</h1>
         <div className="mt-4 max-w-md">
-          <Sokfalt />
+          <Sokfalt value={sok} onChange={setSok} />
         </div>
 
         {/* Aktiekort grid */}
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {seedAktier.map((item) => (
+          {filtreradeAktier.map((item) => (
             <Aktiekort key={item.ticker} item={item} />
           ))}
+
+          {/* Visa meddelande om inga aktier hittades */}
+          {filtreradeAktier.length === 0 && (
+            <p className="text-gray-400">Inga aktier hittades.</p>
+          )}
         </div>
       </div>
   );
