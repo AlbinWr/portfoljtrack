@@ -17,6 +17,7 @@ type PortfoljContext = {
   kop: (ticker: string, pris: number, antal: number) => void
   salj: (ticker: string, pris: number, antal: number) => void
   removeItem: (ticker: string) => void
+  aterstallPortfolj: () => void
 }
 
 const PortfoljContext = createContext({} as PortfoljContext)
@@ -84,8 +85,10 @@ function salj(ticker: string, pris: number, antal: number) {
     })
   }
 
+  const aterstallPortfolj = () => setPortfolj([]);
+
   return (
-    <PortfoljContext.Provider value={{ portfolj, getAntal, kop, salj, removeItem }}>
+    <PortfoljContext.Provider value={{ portfolj, getAntal, kop, salj, removeItem, aterstallPortfolj }}>
       {children}
     </PortfoljContext.Provider>
   )
