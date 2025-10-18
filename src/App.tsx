@@ -1,5 +1,7 @@
 import { Routes, Route } from "react-router";
 import { Navbar } from "./components/Navbar";
+import { PilUppBakgrund } from "./components/PilUppBakgrund";
+import { PilNerBakgrund } from "./components/PilNerBakgrund";
 import { WaveBakgrund } from "./components/waveBakgrund";
 import { Home } from "./routes/Home";
 import { Aktier } from "./routes/Aktier";
@@ -30,6 +32,8 @@ function App() {
               </main>
 
               {/* Bakgrundsvåg och Toaster */}
+              <PilUppBakgrund />
+              <PilNerBakgrund />
               <WaveBakgrund />
               <Toaster position="bottom-right" />
             </div>
