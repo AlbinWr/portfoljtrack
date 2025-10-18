@@ -10,7 +10,7 @@ export const Navbar = () => {
   const { saldo } = useSaldo();
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-slate-800 shadow-lg flex items-center justify-between px-8 py-3">
+    <nav className="fixed top-0 left-0 w-full bg-slate-800 shadow-lg flex items-center justify-between px-8 py-3 z-100">
 
       {/* Logotyp och titel */}
       <NavLink to="/">

@@ -42,4 +42,11 @@ export const seedAktier: AktieSeed[] = [
     volatilitet: 4,
     sektor: "Råvaror",
   },
+  {
+    namn: "Bitcoin",
+    ticker: "BTC",
+    pris: 1_200_000,
+    volatilitet: 10,
+    sektor: "Kryptovaluta",
+  },
 ];

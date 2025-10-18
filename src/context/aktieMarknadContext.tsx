@@ -28,7 +28,7 @@ export function AktieMarknadProvider({ children }: { children: React.ReactNode }
             const andringProcent =
               (Math.random() - 0.4) * (aktie.volatilitet / 100); 
             const nyttPris = Math.max(1, gammaltPris * (1 + andringProcent)); // Pris kan inte gå under 1
-            return [aktie.ticker, Math.round(nyttPris)];
+            return [aktie.ticker, Number(nyttPris.toFixed(2))];
           })
         )
       );

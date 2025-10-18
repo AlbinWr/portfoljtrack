@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router";
 import { Navbar } from "./components/Navbar";
+import { WaveBakgrund } from "./components/waveBakgrund";
 import { Home } from "./routes/Home";
 import { Aktier } from "./routes/Aktier";
 import { Installningar } from "./routes/Installningar";
@@ -23,6 +24,7 @@ function App() {
               <Route path="/installningar" element={<Installningar />} />
               <Route path="/kontakt" element={<Kontakta />} />
             </Routes>
+            <WaveBakgrund />
           </div>
           <Toaster position="bottom-right" />
         </AktieMarknadProvider>
