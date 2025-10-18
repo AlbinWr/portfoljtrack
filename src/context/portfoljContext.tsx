@@ -38,15 +38,18 @@ export function PortfoljProvider({ children }: PortfoljProviderProps) {
   function kop(ticker: string, pris: number, antal: number) {
     const kostnad = pris * antal;
     if (kostnad > saldo) {
-      alert("Du har inte tillräckligt med saldo för detta köp!");
+      alert("Du har inte tillräckligt med cash!");
       return;
     }
     
     setPortfolj((currentPortfolj) => {
-      const item = currentPortfolj.find((item) => item.ticker === ticker);
-      if (item) {
-        return currentPortfolj.map((item) =>
-          item.ticker === ticker ? { ...item, antal: item.antal + antal } : item
+      const aktieFinns = currentPortfolj.find((item) => item.ticker === ticker);
+      if (aktieFinns) {
+        const uppdateratAntal = aktieFinns.antal + antal;
+        const uppdateratSnitt = ((aktieFinns.antal * aktieFinns.inkopsPris) + (antal * pris)) / uppdateratAntal;
+
+        return currentPortfolj.map((aktie) =>
+          aktie.ticker === ticker ? { ...aktie, antal: uppdateratAntal, inkopsPris: uppdateratSnitt } : aktie
         );
       } else {
         return [...currentPortfolj, { ticker, antal, inkopsPris: pris }];
@@ -57,19 +60,19 @@ export function PortfoljProvider({ children }: PortfoljProviderProps) {
   }
 
 function salj(ticker: string, pris: number, antal: number) {
-  const item = portfolj.find((i) => i.ticker === ticker);
-  if (!item || item.antal < antal) {
+  const aktieFinns = portfolj.find((aktie) => aktie.ticker === ticker);
+  if (!aktieFinns || aktieFinns.antal < antal) {
     alert("Du kan inte sälja fler aktier än du äger!");
     return;
   }
 
   setPortfolj(
-    (curr) =>
-      curr
-        .map((i) =>
-          i.ticker === ticker ? { ...i, antal: i.antal - antal } : i
+    (currentPortfolj) =>
+      currentPortfolj
+        .map((aktie) =>
+          aktie.ticker === ticker ? { ...aktie, antal: aktie.antal - antal } : aktie
         )
-        .filter((i) => i.antal > 0)
+        .filter((aktie) => aktie.antal > 0)
   );
 
   uppdateraSaldo(saldo + pris * antal);
@@ -77,7 +80,7 @@ function salj(ticker: string, pris: number, antal: number) {
 
   function removeItem(ticker: string) {
     setPortfolj(currentPortfolj => {
-      return currentPortfolj.filter(item => item.ticker !== ticker)
+      return currentPortfolj.filter(aktie => aktie.ticker !== ticker)
     })
   }
 

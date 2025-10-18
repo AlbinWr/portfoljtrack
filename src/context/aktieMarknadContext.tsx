@@ -26,7 +26,7 @@ export function AktieMarknadProvider({ children }: { children: React.ReactNode }
           seedAktier.map((aktie) => {
             const gammaltPris = curr[aktie.ticker];
             const andringProcent =
-              (Math.random() - 0.45) * (aktie.volatilitet / 100); 
+              (Math.random() - 0.4) * (aktie.volatilitet / 100); 
             const nyttPris = Math.max(1, gammaltPris * (1 + andringProcent)); // Pris kan inte gå under 1
             return [aktie.ticker, Math.round(nyttPris)];
           })
@@ -37,8 +37,13 @@ export function AktieMarknadProvider({ children }: { children: React.ReactNode }
       if (Math.random() < 0.1) {
         const slumpAktie =
           seedAktier[Math.floor(Math.random() * seedAktier.length)];
+        if(!slumpAktie) return toast.error("Lugn dag på börsen, inga större händelser idag.");
+
         const eventRiktning = Math.random() < 0.5 ? -1 : 1; // -1 för nedgång, 1 för uppgång
-        const procent = 0.05 + Math.random() * 0.25; // 5–30%
+        const minVol = 0.02; //min 2%
+        const maxVol = slumpAktie.volatilitet * 0.025; //max beroende på volatilitet
+        const procent = minVol + Math.random() * maxVol;
+
         const andringProcent = 1 + eventRiktning * procent;
 
         // Uppdatera pris

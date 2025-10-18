@@ -3,7 +3,7 @@ import { usePortfolj } from "../context/portfoljContext";
 import { useAktieMarknad } from "../context/aktieMarknadContext";
 
 export const Home = () => {
-  const { saldo } = useSaldo();
+  const { saldo, startSaldo } = useSaldo();
   const { portfolj } = usePortfolj();
   const { getAktiePris } = useAktieMarknad();
 
@@ -13,10 +13,13 @@ export const Home = () => {
   }, 0);
 
   const totaltVarde = saldo + portfoljVarde;
+  const totalVinst = totaltVarde - startSaldo;
+  const totalVinstProcent = (totalVinst / startSaldo) * 100;
+  
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center bg-gradient-to-bl from-slate-900 via-sky-950 to-slate-900 pt-20">
-      <h1 className="text-4xl font-bold text-white mb-8">Portfölj</h1>
+      <h1 className="text-4xl font-bold text-gray-200 mb-8">Portfölj</h1>
 
       {/* Summering högst upp */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-4xl">
@@ -36,8 +39,9 @@ export const Home = () => {
 
         <div className="rounded-lg bg-slate-800 p-4 text-white shadow">
           <p className="text-sm text-gray-400">Totalt värde</p>
-          <p className="text-2xl font-bold text-sky-400">
+          <p className="text-2xl font-bold text-sky-300">
             {totaltVarde.toLocaleString("sv-SE")} SEK
+            <span className={`text-lg ${totalVinst >= 0 ? "text-emerald-400" : "text-red-400"}`}> ({totalVinst.toLocaleString("sv-SE")} SEK, {totalVinstProcent.toFixed(2)}%)</span>
           </p>
         </div>
       </div>
@@ -57,12 +61,17 @@ export const Home = () => {
                   <th className="p-3 text-right">Inköpspris</th>
                   <th className="p-3 text-right">Nupris</th>
                   <th className="p-3 text-right">Värde</th>
+                  <th className="p-3 text-right">Vinst</th>
+                  <th className="p-3 text-right">Vinst %</th>
                 </tr>
               </thead>
               <tbody>
                 {portfolj.map((aktie, idx) => {
                   const nuPris = getAktiePris(aktie.ticker);
                   const varde = aktie.antal * nuPris;
+                  const vinst = (nuPris - aktie.inkopsPris) * aktie.antal;
+                  const vinstProcent =
+                    ((nuPris - aktie.inkopsPris) / aktie.inkopsPris) * 100;
 
                   return (
                     <tr
@@ -78,13 +87,25 @@ export const Home = () => {
                         {aktie.antal}
                       </td>
                       <td className="p-3 text-right text-gray-200">
-                        {aktie.inkopsPris} SEK
+                        {aktie.inkopsPris.toFixed(2)} SEK
                       </td>
                       <td className="p-3 text-right text-gray-200">
-                        {nuPris} SEK
+                        {nuPris.toFixed(2)} SEK
                       </td>
                       <td className="p-3 text-right font-semibold text-gray-200">
                         {varde.toLocaleString("sv-SE")} SEK
+                      </td>
+                      <td
+                        className={`p-3 text-right font-semibold ${
+                          vinst >= 0 ? "text-emerald-400" : "text-red-400"
+                        }`}
+                        >{vinst.toFixed(2)} SEK</td>
+                      <td
+                        className={`p-3 text-right font-semibold ${
+                          vinstProcent >= 0 ? "text-emerald-400" : "text-red-400"
+                        }`}
+                      >
+                        {vinstProcent.toFixed(1)} %
                       </td>
                     </tr>
                   );
