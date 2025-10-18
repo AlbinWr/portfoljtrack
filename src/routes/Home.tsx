@@ -19,10 +19,10 @@ export const Home = () => {
 
   return (
     <div className="w-full max-w-5xl mx-auto flex flex-col items-start gap-5 text-slate-100 px-4">
-      <h1 className="text-4xl font-bold">Portfölj</h1>
+      <h1 className="text-4xl font-bold text-[#FAFAFF]">Portfölj</h1>
 
       {/* Summering högst upp */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-4xl px-4 mb-8 z-50">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-4xl px-4 mb-8 z-50 opacity-98">
         <div className="rounded-lg bg-slate-800 p-4 text-white shadow">
           <p className="text-sm text-gray-400">Saldo</p>
           <p className="text-2xl font-bold text-orange-300">
@@ -47,14 +47,14 @@ export const Home = () => {
       </div>
 
       {/* Portföljtabell */}
-      <div className="w-full max-w-4xl mt-8 z-40">
+      <div className="w-full max-w-4xl mt-8 z-40 ">
         <h2 className="text-2xl text-gray-200 font-semibold mb-4">Innehav</h2>
         {portfolj.length === 0 ? (
           <p className="text-gray-400">Du äger inga aktier ännu.</p>
         ) : (
-          <div className="overflow-hidden rounded-lg shadow-lg">
+          <div className="overflow-x-auto rounded-lg shadow-lg">
             <table className="w-full border-collapse">
-              <thead>
+              <thead >
                 <tr className="bg-slate-800 text-gray-200">
                   <th className="p-3 text-left">Ticker</th>
                   <th className="p-3 text-right">Antal</th>
@@ -113,6 +113,8 @@ export const Home = () => {
               </tbody>
             </table>
           </div>
+
+          
         )}
       </div>
     </div>

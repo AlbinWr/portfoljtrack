@@ -12,7 +12,7 @@ export function Aktiekort({ item }: { item: AktieSeed }) {
   const [antal, setAntal] = useState(1);
 
   return (
-    <div className="rounded-xl border border-slate-700 bg-slate-800 p-4 text-slate-100 shadow hover:shadow-lg transition-shadow duration-300">
+    <div className="opacity-98 rounded-xl border border-slate-700 bg-slate-800 p-4 text-slate-100 shadow hover:shadow-lg transition-shadow duration-300">
       <div className="flex items-center justify-between">
         <div className="text-sm text-slate-400">{item.ticker}</div>
         <button
