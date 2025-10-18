@@ -28,7 +28,7 @@ export function Aktiekort({ item }: { item: AktieSeed }) {
       <div className="mt-3 flex items-center justify-between text-sm">
         <div className="flex flex-col">
           <div>
-            Pris: <span className="font-medium">{aktuelltPris} SEK</span>
+            Pris: <span className="font-medium">{aktuelltPris.toLocaleString("sv-SE")} SEK</span>
           </div>
           <div>
             Volatilitet:{" "}
