@@ -11,6 +11,7 @@ export const Installningar = () => {
 
   const [nyttTickInterval, setNyttTickInterval] = useState(tickInterval.toString());
 
+  // Spara ändringar
   const handleSaveSaldo = () => {
     const nyttSaldo = parseFloat(inputSaldo);
     if (!isNaN(nyttSaldo) && nyttSaldo > 0) {
@@ -23,6 +24,7 @@ export const Installningar = () => {
     }
   };
 
+  // Återställ alla inställningar
   const handleAterstall = () => {
     aterstallSaldo();
     aterstallPortfolj();
@@ -35,7 +37,7 @@ export const Installningar = () => {
 
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-8 text-[#FAFAFF]">
+    <div className="mx-auto max-w-3xl px-4 py-8 text-slate-900 dark:text-white">
       <h1 className="text-3xl font-bold mb-6">Inställningar</h1>
 
       {/*Alternativ */}
@@ -47,8 +49,8 @@ export const Installningar = () => {
       >
       <div className="space-y-6">
         {/* Startsaldo */}
-        <div className="bg-slate-800 p-4 rounded-lg shadow-md">
-          <label className="block text-sm text-[#FAFAFF] mb-2">
+        <div className="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-md">
+          <label className="block text-sm mb-2">
             Startsaldo
           </label>
           <input
@@ -56,31 +58,25 @@ export const Installningar = () => {
             inputMode="numeric"
             value={inputSaldo}
             onChange={(e) => setInputSaldo(e.target.value)}
-            className="w-full bg-slate-700 p-2 rounded-md text-white"
+            className="w-full bg-slate-100 dark:bg-slate-700 p-2 rounded-md text-slate-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
             placeholder="Ange startsaldo"
           />
         </div>
 
         {/* Hastighet på marknaden / sekunder per tick */}
-        <div className="bg-slate-800 p-4 rounded-lg shadow-md">
-          <label className="block text-sm text-[#FAFAFF] mb-2">
+        <div className="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-md">
+          <label className="block text-sm mb-2">
             Marknadens hastighet
           </label>
           <select
             value={nyttTickInterval}
             onChange={(e) => setNyttTickInterval(e.target.value)}
-            className="w-full bg-slate-700 p-2 rounded text-white"
+            className="w-full bg-slate-100 dark:bg-slate-700 p-2 rounded text-slate-900 dark:text-white"
           >
             <option value="1000">Snabb (1 sek)</option>
             <option value="5000">Normal (5 sek)</option>
             <option value="10000">Långsam (10 sek)</option>
           </select>
-        </div>
-
-        {/* Dark Mode */}
-        <div className="bg-slate-800 p-4 rounded-lg shadow flex items-center justify-between">
-          <span className="text-sm text-[#FAFAFF]">Dark Mode</span>
-          <input type="checkbox" className="toggle-checkbox" />
         </div>
 
         {/* Spara knappen */}
@@ -91,13 +87,9 @@ export const Installningar = () => {
         </button>
 
         {/* Återställ */}
-        <button type="button" onClick={handleAterstall} className="w-full bg-red-500 hover:bg-red-600  active:scale-95 transition duration-150 text-[#FAFAFF] font-semibold px-4 py-2 rounded-lg">
+        <button type="button" onClick={handleAterstall} className="w-full bg-red-500 hover:bg-red-600 active:scale-95 transition duration-150 text-white font-semibold px-4 py-2 rounded-lg">
           Återställ
-        </button>
-<div className="bg-white dark:bg-black text-black dark:text-white p-4 rounded">
-  Test Dark Mode
-</div>
-        
+        </button>      
       </div>
       </form>
     </div>

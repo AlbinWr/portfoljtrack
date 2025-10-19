@@ -18,7 +18,8 @@ function App() {
     <SaldoProvider>
       <PortfoljProvider>
         <AktieMarknadProvider>
-          <div className="relative min-h-screen flex flex-col bg-gradient-to-bl from-slate-900 via-sky-950 to-slate-900">
+          <div className="relative min-h-screen flex flex-col 
+  bg-white dark:bg-gradient-to-bl dark:from-slate-900 dark:via-sky-950 dark:to-slate-900">
             <Navbar />
 
               {/* Huvudinnehåll */}
