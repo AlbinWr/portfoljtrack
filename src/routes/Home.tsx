@@ -18,8 +18,8 @@ export const Home = () => {
   
 
   return (
-    <div className="w-full max-w-5xl mx-auto flex flex-col items-start gap-5 text-slate-100 px-4">
-      <h1 className="text-4xl font-bold text-[#FAFAFF]">Portfölj</h1>
+    <div className="w-full max-w-5xl mx-auto flex flex-col items-start gap-5 text-slate-900 dark:text-white px-4">
+      <h1 className="text-4xl font-bold">Portfölj</h1>
 
       {/* Summering högst upp */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-4xl px-4 mb-8 z-50 opacity-98">
@@ -48,7 +48,7 @@ export const Home = () => {
 
       {/* Portföljtabell */}
       <div className="w-full max-w-4xl mt-8 z-40 ">
-        <h2 className="text-2xl text-gray-200 font-semibold mb-4">Innehav</h2>
+        <h2 className="text-2xl font-semibold mb-4">Innehav</h2>
         {portfolj.length === 0 ? (
           <p className="text-gray-400">Du äger inga aktier ännu.</p>
         ) : (

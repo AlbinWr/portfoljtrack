@@ -18,12 +18,10 @@ export function SaldoProvider({ children }: { children: React.ReactNode }) {
 
   const uppdateraStartSaldo = (nyttStartSaldo: number) => {
     setStartSaldo(nyttStartSaldo);
-    setSaldo(nyttStartSaldo);
   };
 
     const aterstallSaldo = () => {
-    setSaldo(10000);
-    setStartSaldo(10000);
+    setSaldo(startSaldo);
   };
 
   return (

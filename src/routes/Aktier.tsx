@@ -12,8 +12,8 @@ export const Aktier = () => {
   );
 
   return (
-      <div className="mx-auto max-w-5xl px-4 z-10 text-slate-100">
-        <h1 className="text-3xl font-bold">Aktier</h1>
+      <div className="mx-auto max-w-5xl px-4 z-10 text-slate-900 dark:text-white">
+        <h1 className="text-3xl font-bold dark:text-slate-200">Aktier</h1>
         <div className="mt-4 max-w-md">
           <Sokfalt value={sok} onChange={setSok} />
         </div>

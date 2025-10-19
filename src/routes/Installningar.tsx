@@ -14,7 +14,7 @@ export const Installningar = () => {
   // Spara ändringar
   const handleSaveSaldo = () => {
     const nyttSaldo = parseFloat(inputSaldo);
-    if (!isNaN(nyttSaldo) && nyttSaldo > 0) {
+    if (!isNaN(nyttSaldo) && nyttSaldo > 0 && nyttSaldo !== startSaldo) {
       uppdateraStartSaldo(nyttSaldo);
     }
 
@@ -31,7 +31,7 @@ export const Installningar = () => {
     aterstallMarknad();
     aterstallTickInterval();
     setNyttTickInterval("5000");
-    setInputSaldo("10000");
+    setInputSaldo(startSaldo.toString());
   };
 
 
