@@ -94,6 +94,10 @@ export const Installningar = () => {
         <button type="button" onClick={handleAterstall} className="w-full bg-red-500 hover:bg-red-600  active:scale-95 transition duration-150 text-[#FAFAFF] font-semibold px-4 py-2 rounded-lg">
           Återställ
         </button>
+<div className="bg-white dark:bg-black text-black dark:text-white p-4 rounded">
+  Test Dark Mode
+</div>
+        
       </div>
       </form>
     </div>
