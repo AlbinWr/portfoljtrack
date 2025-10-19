@@ -11,7 +11,7 @@ type SaldoContextValue = {
 const SaldoContext = createContext<SaldoContextValue | undefined>(undefined);
 
 export function SaldoProvider({ children }: { children: React.ReactNode }) {
-  const [startSaldo, setStartSaldo] = useState(10_000);
+  const [startSaldo, setStartSaldo] = useState(10000);
   const [saldo, setSaldo] = useState(startSaldo);
 
   const uppdateraSaldo = (nyttSaldo: number) => setSaldo(nyttSaldo);
@@ -22,7 +22,8 @@ export function SaldoProvider({ children }: { children: React.ReactNode }) {
   };
 
     const aterstallSaldo = () => {
-    setSaldo(startSaldo);
+    setSaldo(10000);
+    setStartSaldo(10000);
   };
 
   return (

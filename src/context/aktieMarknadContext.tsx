@@ -5,6 +5,10 @@ import toast from "react-hot-toast";
 // Definiera typ
 type AktieMarknadContextType = {
   getAktiePris: (ticker: string) => number;
+  tickInterval: number;
+  uppdateraTickInterval: (nyttInterval: number) => void;
+  aterstallTickInterval: () => void;
+  aterstallMarknad: () => void;
 };
 
 // Skapa context
@@ -17,6 +21,8 @@ export function AktieMarknadProvider({ children }: { children: React.ReactNode }
   const [priser, setPriser] = useState<Record<string, number>>(
     Object.fromEntries(seedAktier.map((s: AktieSeed) => [s.ticker, s.pris]))
   );
+
+  const [tickInterval, setTickInterval] = useState<number>(5000);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -33,7 +39,7 @@ export function AktieMarknadProvider({ children }: { children: React.ReactNode }
         )
       );
 
-      //Slumpa fram event
+      //Slumpa event
       if (Math.random() < 0.1) {
         const slumpAktie =
           seedAktier[Math.floor(Math.random() * seedAktier.length)];
@@ -66,15 +72,32 @@ export function AktieMarknadProvider({ children }: { children: React.ReactNode }
           );
         }
       }
-    }, 5000); // Uppdatera priser var 5:e sekund
+    }, tickInterval); // Uppdatera priser var 5:e sekund
 
     return () => clearInterval(interval);
-  }, []);
+  }, [tickInterval]);
+
+  // Funktioner
+  const uppdateraTickInterval = (nyttInterval: number) => {
+    setTickInterval(nyttInterval);
+  }
+  const aterstallTickInterval = () => {
+    setTickInterval(5000);
+  }
+  const aterstallMarknad = () => {
+    setPriser(
+      Object.fromEntries(seedAktier.map((s: AktieSeed) => [s.ticker, s.pris]))
+    );
+  }
 
   return (
     <AktieMarknadContext.Provider
       value={{
         getAktiePris: (ticker: string) => priser[ticker] ?? 0,
+        tickInterval,
+        uppdateraTickInterval,
+        aterstallTickInterval,
+        aterstallMarknad,
       }}
     >
       {children}

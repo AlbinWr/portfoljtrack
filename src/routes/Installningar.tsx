@@ -1,23 +1,38 @@
 import { useState } from "react";
 import { useSaldo } from "../hooks/useSaldo";
 import { usePortfolj } from "../context/portfoljContext";
+import { useAktieMarknad } from "../context/aktieMarknadContext";
 
 export const Installningar = () => {
   const { startSaldo, uppdateraStartSaldo, aterstallSaldo } = useSaldo();
   const [inputSaldo, setInputSaldo] = useState(startSaldo.toString());
   const { aterstallPortfolj } = usePortfolj();
+  const { aterstallMarknad, aterstallTickInterval, uppdateraTickInterval, tickInterval } = useAktieMarknad();
+
+  const [nyttTickInterval, setNyttTickInterval] = useState(tickInterval.toString());
 
   const handleSaveSaldo = () => {
     const nyttSaldo = parseFloat(inputSaldo);
     if (!isNaN(nyttSaldo) && nyttSaldo > 0) {
       uppdateraStartSaldo(nyttSaldo);
     }
+
+    const nyHastighet = parseInt(nyttTickInterval);
+    if (!isNaN(nyHastighet) && nyHastighet !== tickInterval) {
+      uppdateraTickInterval(nyHastighet);
+    }
   };
 
   const handleAterstall = () => {
     aterstallSaldo();
     aterstallPortfolj();
-  }
+    aterstallMarknad();
+    aterstallTickInterval();
+    setNyttTickInterval("5000");
+    setInputSaldo("10000");
+  };
+
+
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 text-[#FAFAFF]">
@@ -45,17 +60,23 @@ export const Installningar = () => {
             placeholder="Ange startsaldo"
           />
         </div>
+
         {/* Hastighet på marknaden / sekunder per tick */}
         <div className="bg-slate-800 p-4 rounded-lg shadow-md">
           <label className="block text-sm text-[#FAFAFF] mb-2">
             Marknadens hastighet
           </label>
-          <select className="w-full bg-slate-700 p-2 rounded text-white">
-            <option value="1000">Normal (1 sek)</option>
-            <option value="5000">Snabb (5 sek)</option>
+          <select
+            value={nyttTickInterval}
+            onChange={(e) => setNyttTickInterval(e.target.value)}
+            className="w-full bg-slate-700 p-2 rounded text-white"
+          >
+            <option value="1000">Snabb (1 sek)</option>
+            <option value="5000">Normal (5 sek)</option>
             <option value="10000">Långsam (10 sek)</option>
           </select>
         </div>
+
         {/* Dark Mode */}
         <div className="bg-slate-800 p-4 rounded-lg shadow flex items-center justify-between">
           <span className="text-sm text-[#FAFAFF]">Dark Mode</span>
@@ -70,7 +91,7 @@ export const Installningar = () => {
         </button>
 
         {/* Återställ */}
-        <button onClick={handleAterstall} className="w-full bg-red-500 hover:bg-red-600  active:scale-95 transition duration-150 text-[#FAFAFF] font-semibold px-4 py-2 rounded-lg">
+        <button type="button" onClick={handleAterstall} className="w-full bg-red-500 hover:bg-red-600  active:scale-95 transition duration-150 text-[#FAFAFF] font-semibold px-4 py-2 rounded-lg">
           Återställ
         </button>
       </div>
