@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router";
 import { Navbar } from "./components/Navbar";
 import { PilUppBakgrund } from "./components/PilUppBakgrund";
 import { PilNerBakgrund } from "./components/PilNerBakgrund";
-import { WaveBakgrund } from "./components/waveBakgrund";
 import { Home } from "./routes/Home";
 import { Aktier } from "./routes/Aktier";
 import { Installningar } from "./routes/Installningar";
@@ -11,6 +10,7 @@ import { Kontakta } from "./routes/Kontakta";
 import { PortfoljProvider } from "./context/portfoljContext";
 import { AktieMarknadProvider } from "./context/aktieMarknadContext";
 import { Toaster } from "react-hot-toast";
+import { Footer } from "./components/Footer";
   
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
     <SaldoProvider>
       <PortfoljProvider>
         <AktieMarknadProvider>
-          <div className="relative min-h-screen flex flex-col 
+          <div className="relative flex flex-col min-h-screen 
   bg-white dark:bg-gradient-to-bl dark:from-slate-900 dark:via-sky-950 dark:to-slate-900">
             <Navbar />
 
@@ -35,8 +35,8 @@ function App() {
               {/* Bakgrundsvåg och Toaster */}
               <PilUppBakgrund />
               <PilNerBakgrund />
-              <WaveBakgrund />
               <Toaster position="bottom-right" />
+              <Footer />
             </div>
         </AktieMarknadProvider>
       </PortfoljProvider>
