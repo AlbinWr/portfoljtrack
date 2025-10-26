@@ -18,8 +18,7 @@ function App() {
     <SaldoProvider>
       <PortfoljProvider>
         <AktieMarknadProvider>
-          <div className="relative flex flex-col min-h-screen
-  bg-zinc-100 dark:bg-gradient-to-bl dark:from-slate-900 dark:via-sky-950 dark:to-slate-900">
+          <div className="relative flex flex-col min-h-screen bg-zinc-100 dark:bg-gradient-to-bl dark:from-slate-900 dark:via-sky-950 dark:to-slate-900">
             <Navbar />
 
               {/* Huvudinnehåll */}
@@ -36,8 +35,8 @@ function App() {
               <PilUppBakgrund />
               <PilNerBakgrund />
               <Toaster position="bottom-right" />
-              <Footer />
             </div>
+            <Footer />
         </AktieMarknadProvider>
       </PortfoljProvider>
     </SaldoProvider>

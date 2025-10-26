@@ -1,8 +1,13 @@
+import githubSvartIcon from "../assets/icons/githubSvart.svg";
+import linkedinIcon from "../assets/icons/linkedin.svg";
+import { NavLink } from "react-router-dom";
 
 export const Footer = () => {
   return (
-    <footer className="relative w-full bg-[#00cba9] text-slate-900 py-4 text-center text-sm">
-      <div className="absolute -top-[120px] left-0 w-full overflow-hidden leading-none z-0">
+    <footer className="relative w-full bg-[#00cba9] text-slate-900 py-8 text-sm">
+
+      {/* Wave SVG */}
+      <div className="absolute -top-[120px] left-0 w-full overflow-visible leading-none z-0">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none" className="w-[110%] h-32 -ml-[5%]">
           <path
             fill="#00cba9"
@@ -11,7 +16,40 @@ export const Footer = () => {
           ></path>
         </svg>
       </div>
-      <div className="py-6 relative z-10">© 2025 AktieX. Alla rättigheter förbehållna.</div>
+
+        {/* Innehåll */}
+      <div className="relative z-10 max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-left">
+
+        {/* Information */}
+        <div className="md:justify-self-start">
+          <h2 className="font-bold text-lg">AktieX</h2>
+          <p className="mt-2 text-xs opacity-80">En enkel aktiesimulator byggd med React & Tailwind.</p>
+        </div>
+
+        {/* Snabb länkar */}
+        <div className="md:justify-self-center">
+          <h2 className="font-bold text-lg">Länkar</h2>
+          <NavLink to="/">Hem</NavLink>
+          <NavLink to="/aktier" className="block mt-1">Aktier</NavLink>
+          <NavLink to="/installningar" className="block mt-1">Inställningar</NavLink>
+          <NavLink to="/kontakt" className="block mt-1">Kontakta mig</NavLink>
+        </div>
+
+        {/* Sociala länkar */}
+        <div className="md:justify-self-end">
+          <h2 className="font-bold text-lg">Socialt</h2>
+          <div className="flex justify-center md:justify-start gap-4 mt-2">
+            <a href="https://github.com/AlbinWr?tab=repositories" target="_blank" rel="noopener noreferrer">
+              <img src={githubSvartIcon} alt="Github" className="w-6 h-6" />
+            </a>
+            <a href="https://www.linkedin.com/in/albinwreeby" target="_blank" rel="noopener noreferrer">
+              <img src={linkedinIcon} alt="LinkedIn" className="w-6 h-6" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div className="relative z-10 text-center mt-6 text-xs opacity-70">© 2025 AktieX. Alla rättigheter förbehållna.</div>
     </footer>
   );
 };

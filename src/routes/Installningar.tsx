@@ -47,52 +47,58 @@ export const Installningar = () => {
           handleSaveSaldo();
         }}
       >
-      <div className="space-y-6">
-        {/* Startsaldo */}
-        <div className="rounded-lg bg-slate-50/70 dark:bg-slate-800/90 backdrop-blur-md border border-slate-200/50 dark:border-slate-700/50 p-4 shadow-md font-semibold">
-          <label className="block text-sm mb-2">
-            Startsaldo
-          </label>
-          <input
-            type="text"
-            inputMode="numeric"
-            value={inputSaldo}
-            onChange={(e) => setInputSaldo(e.target.value)}
-            className="w-full bg-slate-100 inset-shadow-2xs font-normal dark:bg-slate-700 p-2 rounded-md text-slate-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
-            placeholder="Ange startsaldo"
-          />
-        </div>
+        <div className="space-y-6">
+          {/* Startsaldo */}
+          <div className="rounded-lg bg-slate-50/70 dark:bg-slate-800/90 backdrop-blur-md border border-slate-200/50 dark:border-slate-700/50 p-4 shadow-md font-semibold">
+            <label className="block text-md mb-2">Startsaldo</label>
+            <p className="text-sm text-slate-700 dark:text-slate-400 mb-2">
+              Här kan du ange ditt startsaldo. Detta används när du återställer
+              spelet.
+            </p>
+            <input
+              type="text"
+              inputMode="numeric"
+              value={inputSaldo}
+              onChange={(e) => setInputSaldo(e.target.value)}
+              className="w-full bg-slate-100 inset-shadow-2xs font-normal dark:bg-slate-700 p-2 rounded-md text-slate-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
+              placeholder="Ange startsaldo"
+            />
+          </div>
 
-        {/* Hastighet på marknaden / sekunder per tick */}
-        <div className="rounded-lg bg-slate-50/70 dark:bg-slate-800/90 
-  backdrop-blur-md border border-slate-200/50 dark:border-slate-700/50 
-  p-4 shadow-md font-semibold">
-          <label className="block text-sm mb-2">
-            Marknadens hastighet
-          </label>
-          <select
-            value={nyttTickInterval}
-            onChange={(e) => setNyttTickInterval(e.target.value)}
-            className="w-full bg-slate-100 inset-shadow-2xs font-normal dark:bg-slate-700 p-2 rounded text-slate-900 dark:text-white"
+          {/* Hastighet på marknaden / sekunder per tick */}
+          <div className="rounded-lg bg-slate-50/70 dark:bg-slate-800/90 backdrop-blur-md border border-slate-200/50 dark:border-slate-700/50 p-4 shadow-md font-semibold">
+            <label className="block text-md mb-2">Marknadens hastighet</label>
+            <p className="text-sm text-slate-700 dark:text-slate-400 mb-2">
+              Här ställer du in hur snabbt marknaden uppdateras.
+            </p>
+            <select
+              value={nyttTickInterval}
+              onChange={(e) => setNyttTickInterval(e.target.value)}
+              className="w-full bg-slate-100 inset-shadow-2xs font-normal dark:bg-slate-700 p-2 rounded text-slate-900 dark:text-white"
+            >
+              <option value="1000">Snabb (1 sek)</option>
+              <option value="5000">Normal (5 sek)</option>
+              <option value="10000">Långsam (10 sek)</option>
+            </select>
+          </div>
+
+          {/* Spara knappen */}
+          <button
+            type="submit"
+            className="w-full bg-[#00cba9] hover:bg-[#00b59b] active:scale-95 transition text-white font-semibold px-4 py-2 rounded-lg"
           >
-            <option value="1000">Snabb (1 sek)</option>
-            <option value="5000">Normal (5 sek)</option>
-            <option value="10000">Långsam (10 sek)</option>
-          </select>
+            Spara inställningar
+          </button>
+
+          {/* Återställ */}
+          <button
+            type="button"
+            onClick={handleAterstall}
+            className="w-full bg-[#e85566] hover:bg-[#d94452] active:scale-95 transition duration-150 text-white font-semibold px-4 py-2 rounded-lg"
+          >
+            Återställ
+          </button>
         </div>
-
-        {/* Spara knappen */}
-        <button
-          type="submit"
-          className="w-full bg-[#00cba9] hover:bg-[#00b59b] active:scale-95 transition text-white font-semibold px-4 py-2 rounded-lg">
-          Spara inställningar
-        </button>
-
-        {/* Återställ */}
-        <button type="button" onClick={handleAterstall} className="w-full bg-[#e85566] hover:bg-[#d94452] active:scale-95 transition duration-150 text-white font-semibold px-4 py-2 rounded-lg">
-          Återställ
-        </button>      
-      </div>
       </form>
     </div>
   );

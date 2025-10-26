@@ -31,11 +31,10 @@ export const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 w-full bg-zinc-50 dark:bg-slate-800 shadow-md flex items-center justify-between px-8 py-3 z-100">
 
-      {/* Logotyp och titel */}
+      {/* Logotyp */}
       <NavLink to="/">
         <div className="flex items-center gap-3 text-blue-400 dark:text-blue-400">
           <BiLogoReact className="text-5xl active:scale-95" />
-          {/* <span className="font-semibold text-2xl hidden sm:block transition-transform active:scale-95">AktieX</span> */}
         </div>
       </NavLink>
 
@@ -59,7 +58,7 @@ export const Navbar = () => {
           to="/aktier"
           className={({ isActive }) =>
             isActive
-              ? "relative py-1 px-3 text-lg font-light text-sky-500 dark:text-sky-300 rounded-2xl bg-slate-200 dark:bg-slate-700 transition duration-300 group"
+              ? "relative py-1 px-3 text-lg font-light text-sky-400 dark:text-sky-300 rounded-2xl bg-slate-200 dark:bg-slate-700 transition duration-300 group"
               : "relative py-1 px-3 text-lg font-light text-slate-800 dark:text-white hover:text-sky-500 dark:hover:text-sky-300 rounded-2xl hover:bg-slate-200 dark:hover:bg-slate-700 transition duration-300 group"
           }
         >
