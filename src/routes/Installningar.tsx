@@ -49,7 +49,9 @@ export const Installningar = () => {
       >
       <div className="space-y-6">
         {/* Startsaldo */}
-        <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-none p-4 rounded-lg shadow-md font-semibold">
+        <div className="rounded-lg bg-slate-50/70 dark:bg-slate-800/90 
+  backdrop-blur-md border border-slate-200/50 dark:border-slate-700/50 
+  p-4 shadow-md font-semibold">
           <label className="block text-sm mb-2">
             Startsaldo
           </label>
@@ -64,7 +66,9 @@ export const Installningar = () => {
         </div>
 
         {/* Hastighet på marknaden / sekunder per tick */}
-        <div className="bg-slate-50 font-semibold dark:bg-slate-800 border border-slate-200 dark:border-none p-4 rounded-lg shadow-md">
+        <div className="rounded-lg bg-slate-50/70 dark:bg-slate-800/90 
+  backdrop-blur-md border border-slate-200/50 dark:border-slate-700/50 
+  p-4 shadow-md font-semibold">
           <label className="block text-sm mb-2">
             Marknadens hastighet
           </label>

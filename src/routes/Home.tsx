@@ -22,24 +22,24 @@ export const Home = () => {
       <h1 className="text-4xl font-bold">Portfölj</h1>
 
       {/* Summering högst upp */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-4xl px-4 mb-8 z-50 opacity-98 dark:text-gray-400">
-        <div className="rounded-lg border border-slate-200 dark:border-none bg-slate-50 dark:bg-slate-800 p-4 shadow">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-4xl px-4 mb-8 z-50 dark:text-gray-400">
+        <div className="rounded-lg border border-slate-200 dark:border-slate-700/60 bg-slate-50/70 dark:bg-slate-800/90 backdrop-blur-md p-4 shadow-lg">
           <p className="text-sm ">Saldo</p>
           <p className="text-2xl font-bold text-orange-300">
             {saldo.toLocaleString("sv-SE")} SEK
           </p>
         </div>
 
-        <div className="rounded-lg border border-slate-200 dark:border-none bg-slate-50 dark:bg-slate-800 p-4 shadow">
+        <div className="rounded-lg border border-slate-200 dark:border-slate-700/60 bg-slate-50/70 dark:bg-slate-800/90 backdrop-blur-md p-4 shadow-lg">
           <p className="text-sm">Portföljvärde</p>
           <p className="text-2xl font-bold text-emerald-400">
             {portfoljVarde.toLocaleString("sv-SE")} SEK
           </p>
         </div>
 
-        <div className="rounded-lg border border-slate-200 dark:border-none bg-slate-50 dark:bg-slate-800 p-4 shadow">
+        <div className="rounded-lg border border-slate-200 dark:border-slate-700/60 bg-slate-50/70 dark:bg-slate-800/90 backdrop-blur-md p-4 shadow-lg">
           <p className="text-sm">Totalt värde</p>
-          <p className="text-2xl font-bold text-sky-300">
+          <p className="text-2xl font-bold text-sky-400">
             {totaltVarde.toLocaleString("sv-SE")} SEK
             <span className={`text-lg ${totalVinst >= 0 ? "text-emerald-400" : "text-red-400"}`}> ({totalVinst.toLocaleString("sv-SE")} SEK, {totalVinstProcent.toFixed(2)}%)</span>
           </p>
