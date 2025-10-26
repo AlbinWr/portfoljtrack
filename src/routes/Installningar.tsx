@@ -37,8 +37,8 @@ export const Installningar = () => {
 
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-8 font-manrope text-slate-900 dark:text-white">
-      <h1 className="text-3xl font-bold mb-6">Inställningar (Manrope)</h1>
+    <div className="mx-auto max-w-3xl px-4 py-8 text-slate-900 dark:text-white">
+      <h1 className="text-4xl font-bold mb-6">Inställningar</h1>
 
       {/*Alternativ */}
       <form
@@ -49,9 +49,7 @@ export const Installningar = () => {
       >
       <div className="space-y-6">
         {/* Startsaldo */}
-        <div className="rounded-lg bg-slate-50/70 dark:bg-slate-800/90 
-  backdrop-blur-md border border-slate-200/50 dark:border-slate-700/50 
-  p-4 shadow-md font-semibold">
+        <div className="rounded-lg bg-slate-50/70 dark:bg-slate-800/90 backdrop-blur-md border border-slate-200/50 dark:border-slate-700/50 p-4 shadow-md font-semibold">
           <label className="block text-sm mb-2">
             Startsaldo
           </label>

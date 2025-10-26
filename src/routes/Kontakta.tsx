@@ -6,7 +6,7 @@ import linkedinIcon from "../assets/icons/linkedin.svg";
 export const Kontakta = () => {
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 text-slate-900 dark:text-white">
-      <h1 className="text-3xl font-bold mb-6">Kontakta mig</h1>
+      <h1 className="text-3xl font-semibold mb-6">Kontakta mig</h1>
       <div className="space-y-4">
         
         {/** Kontaktinformation */}

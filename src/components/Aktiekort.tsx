@@ -21,9 +21,7 @@ export function Aktiekort({ item }: { item: AktieSeed }) {
           {item.ticker}
         </div>
         <button
-          className="text-xs rounded-md border border-slate-600 px-2 py-1"
-          onClick={() => alert(`${item.ticker} tillagd i bevakning`)}
-        >
+          className="text-xs rounded-md border border-slate-600 px-2 py-1 active:shadow-inner active:scale-95 transition duration-150 hover:bg-slate-200 dark:hover:bg-slate-700">
           Bevakning
         </button>
       </div>
