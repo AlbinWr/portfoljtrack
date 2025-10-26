@@ -37,8 +37,8 @@ export const Installningar = () => {
 
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-8 text-slate-900 dark:text-white">
-      <h1 className="text-3xl font-bold mb-6">Inställningar</h1>
+    <div className="mx-auto max-w-3xl px-4 py-8 font-manrope text-slate-900 dark:text-white">
+      <h1 className="text-3xl font-bold mb-6">Inställningar (Manrope)</h1>
 
       {/*Alternativ */}
       <form
@@ -49,7 +49,7 @@ export const Installningar = () => {
       >
       <div className="space-y-6">
         {/* Startsaldo */}
-        <div className="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-md">
+        <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-none p-4 rounded-lg shadow-md font-semibold">
           <label className="block text-sm mb-2">
             Startsaldo
           </label>
@@ -58,20 +58,20 @@ export const Installningar = () => {
             inputMode="numeric"
             value={inputSaldo}
             onChange={(e) => setInputSaldo(e.target.value)}
-            className="w-full bg-slate-100 dark:bg-slate-700 p-2 rounded-md text-slate-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
+            className="w-full bg-slate-100 inset-shadow-2xs font-normal dark:bg-slate-700 p-2 rounded-md text-slate-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
             placeholder="Ange startsaldo"
           />
         </div>
 
         {/* Hastighet på marknaden / sekunder per tick */}
-        <div className="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-md">
+        <div className="bg-slate-50 font-semibold dark:bg-slate-800 border border-slate-200 dark:border-none p-4 rounded-lg shadow-md">
           <label className="block text-sm mb-2">
             Marknadens hastighet
           </label>
           <select
             value={nyttTickInterval}
             onChange={(e) => setNyttTickInterval(e.target.value)}
-            className="w-full bg-slate-100 dark:bg-slate-700 p-2 rounded text-slate-900 dark:text-white"
+            className="w-full bg-slate-100 inset-shadow-2xs font-normal dark:bg-slate-700 p-2 rounded text-slate-900 dark:text-white"
           >
             <option value="1000">Snabb (1 sek)</option>
             <option value="5000">Normal (5 sek)</option>
@@ -82,12 +82,12 @@ export const Installningar = () => {
         {/* Spara knappen */}
         <button
           type="submit"
-          className="w-full bg-emerald-500 hover:bg-emerald-600 active:scale-95 transition text-white font-semibold px-4 py-2 rounded-lg">
+          className="w-full bg-[#00cba9] hover:bg-[#00b59b] active:scale-95 transition text-white font-semibold px-4 py-2 rounded-lg">
           Spara inställningar
         </button>
 
         {/* Återställ */}
-        <button type="button" onClick={handleAterstall} className="w-full bg-red-500 hover:bg-red-600 active:scale-95 transition duration-150 text-white font-semibold px-4 py-2 rounded-lg">
+        <button type="button" onClick={handleAterstall} className="w-full bg-[#e85566] hover:bg-[#d94452] active:scale-95 transition duration-150 text-white font-semibold px-4 py-2 rounded-lg">
           Återställ
         </button>      
       </div>

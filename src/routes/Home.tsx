@@ -4,7 +4,7 @@ import { useAktieMarknad } from "../context/aktieMarknadContext";
 
 export const Home = () => {
   const { saldo, startSaldo } = useSaldo();
-  const { portfolj } = usePortfolj();
+  const { portfolj, salj } = usePortfolj();
   const { getAktiePris } = useAktieMarknad();
 
   const portfoljVarde = portfolj.reduce((sum, aktie) => {
@@ -22,23 +22,23 @@ export const Home = () => {
       <h1 className="text-4xl font-bold">Portfölj</h1>
 
       {/* Summering högst upp */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-4xl px-4 mb-8 z-50 opacity-98">
-        <div className="rounded-lg bg-slate-800 p-4 text-white shadow">
-          <p className="text-sm text-gray-400">Saldo</p>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-4xl px-4 mb-8 z-50 opacity-98 dark:text-gray-400">
+        <div className="rounded-lg border border-slate-200 dark:border-none bg-slate-50 dark:bg-slate-800 p-4 shadow">
+          <p className="text-sm ">Saldo</p>
           <p className="text-2xl font-bold text-orange-300">
             {saldo.toLocaleString("sv-SE")} SEK
           </p>
         </div>
 
-        <div className="rounded-lg bg-slate-800 p-4 text-white shadow">
-          <p className="text-sm text-gray-400">Portföljvärde</p>
+        <div className="rounded-lg border border-slate-200 dark:border-none bg-slate-50 dark:bg-slate-800 p-4 shadow">
+          <p className="text-sm">Portföljvärde</p>
           <p className="text-2xl font-bold text-emerald-400">
             {portfoljVarde.toLocaleString("sv-SE")} SEK
           </p>
         </div>
 
-        <div className="rounded-lg bg-slate-800 p-4 text-white shadow">
-          <p className="text-sm text-gray-400">Totalt värde</p>
+        <div className="rounded-lg border border-slate-200 dark:border-none bg-slate-50 dark:bg-slate-800 p-4 shadow">
+          <p className="text-sm">Totalt värde</p>
           <p className="text-2xl font-bold text-sky-300">
             {totaltVarde.toLocaleString("sv-SE")} SEK
             <span className={`text-lg ${totalVinst >= 0 ? "text-emerald-400" : "text-red-400"}`}> ({totalVinst.toLocaleString("sv-SE")} SEK, {totalVinstProcent.toFixed(2)}%)</span>
@@ -47,15 +47,15 @@ export const Home = () => {
       </div>
 
       {/* Portföljtabell */}
-      <div className="w-full max-w-4xl mt-8 z-40 ">
+      <div className="w-full max-w-4xl mt-8 z-40 pb-5">
         <h2 className="text-2xl font-semibold mb-4">Innehav</h2>
         {portfolj.length === 0 ? (
-          <p className="text-gray-400">Du äger inga aktier ännu.</p>
+          <p className="text-slate-900 dark:text-gray-200">Du äger inga aktier ännu.</p>
         ) : (
           <div className="overflow-x-auto rounded-lg shadow-lg">
-            <table className="w-full border-collapse">
+            <table className="w-full border-collapse ">
               <thead >
-                <tr className="bg-slate-800 text-gray-200">
+                <tr className="bg-slate-50 text-slate-900 dark:bg-slate-800 dark:text-white">
                   <th className="p-3 text-left">Ticker</th>
                   <th className="p-3 text-right">Antal</th>
                   <th className="p-3 text-right">Inköpspris</th>
@@ -63,6 +63,7 @@ export const Home = () => {
                   <th className="p-3 text-right">Värde</th>
                   <th className="p-3 text-right">Vinst</th>
                   <th className="p-3 text-right">Vinst %</th>
+                  <th className="p-3 text-right"></th>
                 </tr>
               </thead>
               <tbody>
@@ -77,35 +78,52 @@ export const Home = () => {
                     <tr
                       key={aktie.ticker}
                       className={
-                        idx % 2 === 0 ? "bg-slate-900" : "bg-slate-800"
+                        idx % 2 === 0
+                          ? "text-slate-900 dark:text-gray-200 bg-slate-100 dark:bg-slate-900"
+                          : "text-slate-900 dark:text-gray-200 bg-slate-50 dark:bg-slate-800"
                       }
                     >
-                      <td className="p-3 font-medium text-sky-300">
+                      <td className="p-3 font-semibold text-sky-300">
                         {aktie.ticker}
                       </td>
-                      <td className="p-3 text-right text-gray-200">
-                        {aktie.antal}
-                      </td>
-                      <td className="p-3 text-right text-gray-200">
+                      <td className="p-3 text-right">{aktie.antal}</td>
+                      <td className="p-3 text-right">
                         {aktie.inkopsPris.toFixed(2)} SEK
                       </td>
-                      <td className="p-3 text-right text-gray-200">
+                      <td className="p-3 text-right">
                         {nuPris.toFixed(2)} SEK
                       </td>
-                      <td className="p-3 text-right font-semibold text-gray-200">
+                      <td className="p-3 text-right font-semibold">
                         {varde.toLocaleString("sv-SE")} SEK
                       </td>
                       <td
                         className={`p-3 text-right font-semibold ${
                           vinst >= 0 ? "text-emerald-400" : "text-red-400"
                         }`}
-                        >{vinst.toFixed(2)} SEK</td>
+                      >
+                        {vinst.toFixed(2)} SEK
+                      </td>
                       <td
                         className={`p-3 text-right font-semibold ${
-                          vinstProcent >= 0 ? "text-emerald-400" : "text-red-400"
+                          vinstProcent >= 0
+                            ? "text-emerald-400"
+                            : "text-red-400"
                         }`}
                       >
                         {vinstProcent.toFixed(1)} %
+                      </td>
+                      {/* Sälj alla aktier */}
+                      <td className="p-3 text-right">
+                        <button
+                          onClick={() =>
+                            salj(aktie.ticker, nuPris, aktie.antal)
+                          }
+                          className="rounded-md px-4 py-2 text-sm font-semibold text-white shadow 
+               bg-[#e85566] hover:bg-[#d94452] active:scale-95 
+               active:bg-[#d94452] active:shadow-inner"
+                        >
+                          Sälj alla
+                        </button>
                       </td>
                     </tr>
                   );

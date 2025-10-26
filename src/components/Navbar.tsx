@@ -29,13 +29,13 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-white dark:bg-slate-800 shadow-lg flex items-center justify-between px-8 py-3 z-100">
+    <nav className="fixed top-0 left-0 w-full bg-zinc-50 dark:bg-slate-800 shadow-md flex items-center justify-between px-8 py-3 z-100">
 
       {/* Logotyp och titel */}
       <NavLink to="/">
         <div className="flex items-center gap-3 text-blue-400 dark:text-blue-400">
-          <BiLogoReact className="text-5xl sm:hidden active:scale-95" />
-          <span className="font-semibold text-2xl hidden sm:block transition-transform active:scale-95">AktieX</span>
+          <BiLogoReact className="text-5xl active:scale-95" />
+          {/* <span className="font-semibold text-2xl hidden sm:block transition-transform active:scale-95">AktieX</span> */}
         </div>
       </NavLink>
 

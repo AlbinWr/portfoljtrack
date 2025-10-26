@@ -64,11 +64,11 @@ export function AktieMarknadProvider({ children }: { children: React.ReactNode }
         // Visa toast
         if (eventRiktning > 0) {
           toast.success(
-            `${slumpAktie.namn} rusar ${Math.round(procent * 100)}% 🚀`
+            `${slumpAktie.namn} rusar ${Math.round(procent * 100)}%`
           );
         } else {
           toast.error(
-            `${slumpAktie.namn} faller ${Math.round(procent * 100)}% 📉`
+            `${slumpAktie.namn} faller ${Math.round(procent * 100)}%`
           );
         }
       }

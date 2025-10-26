@@ -12,9 +12,9 @@ export function Aktiekort({ item }: { item: AktieSeed }) {
   const [antal, setAntal] = useState(1);
 
   return (
-    <div className="opacity-98 rounded-xl border border-slate-700 bg-slate-800 p-4 text-slate-100 shadow hover:shadow-lg transition-shadow duration-300">
+    <div className="opacity-98 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 p-4 text-slate-900 dark:text-slate-100 shadow hover:shadow-lg transition-shadow duration-300">
       <div className="flex items-center justify-between">
-        <div className="text-sm text-slate-400">{item.ticker}</div>
+        <div className="text-sm text-sky-400 dark:text-slate-400">{item.ticker}</div>
         <button
           className="text-xs rounded-md border border-slate-600 px-2 py-1"
           onClick={() => alert(`${item.ticker} tillagd i bevakning`)}
@@ -37,7 +37,7 @@ export function Aktiekort({ item }: { item: AktieSeed }) {
           <div>
             Sektor: <span className="font-medium">{item.sektor}</span>
           </div>
-          <div className="mt-2 text-sm text-slate-300">
+          <div className="mt-2 text-sm dark:text-slate-300">
             {antalAktier > 0 ? `Innehav: ${antalAktier} st` : "Äger ej aktier"}
           </div>
         </div>
@@ -50,7 +50,7 @@ export function Aktiekort({ item }: { item: AktieSeed }) {
             min="1"
             value={antal}
             onChange={(e) => setAntal(Number(e.target.value))}
-            className="w-16 rounded bg-slate-700 px-2 py-1 text-center text-white"
+            className="w-16 rounded inset-shadow-2xs bg-slate-100 dark:bg-slate-700 px-2 py-1 text-center dark:text-white"
           />
         </div>
 
@@ -58,8 +58,8 @@ export function Aktiekort({ item }: { item: AktieSeed }) {
         <div className="flex flex-col gap-2">
           <button
             onClick={() => {kop(item.ticker, aktuelltPris, antal); setAntal(1)}}
-            className="rounded-md bg-emerald-500 px-4 py-2 text-sm font-semibold text-white shadow 
-             hover:bg-emerald-600 active:scale-95 active:bg-emerald-700 active:shadow-inner 
+            className="rounded-md bg-[#00cba9] px-4 py-2 text-sm font-semibold text-white shadow 
+             hover:bg-[#00b59b] active:scale-95 active:bg-[#00b59b] active:shadow-inner 
              transition duration-150"
           >
             Köp
@@ -69,8 +69,8 @@ export function Aktiekort({ item }: { item: AktieSeed }) {
             disabled={antalAktier === 0}
             className={`rounded-md px-4 py-2 text-sm font-semibold text-white shadow transition duration-150 ${
               antalAktier > 0
-                ? "bg-red-500 hover:bg-red-600 active:scale-95 active:bg-red-700 active:shadow-inner"
-                : "bg-gray-600 cursor-not-allowed opacity-50"
+                ? "bg-[#e85566] hover:bg-[#d94452] active:scale-95 active:bg-[#d94452] active:shadow-inner"
+                : "bg-gray-400 dark:bg-gray-600 cursor-not-allowed opacity-50"
             }`}
           >
             Sälj

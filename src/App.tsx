@@ -19,7 +19,7 @@ function App() {
       <PortfoljProvider>
         <AktieMarknadProvider>
           <div className="relative flex flex-col min-h-screen 
-  bg-white dark:bg-gradient-to-bl dark:from-slate-900 dark:via-sky-950 dark:to-slate-900">
+  bg-zinc-100 dark:bg-gradient-to-bl dark:from-slate-900 dark:via-sky-950 dark:to-slate-900">
             <Navbar />
 
               {/* Huvudinnehåll */}
