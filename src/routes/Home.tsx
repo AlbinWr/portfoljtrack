@@ -41,7 +41,7 @@ export const Home = () => {
           <p className="text-sm">Totalt värde</p>
           <p className="text-2xl font-bold text-sky-400">
             {totaltVarde.toLocaleString("sv-SE")} SEK
-            <span className={`text-lg ${totalVinst >= 0 ? "text-emerald-400" : "text-red-400"}`}> ({totalVinst.toLocaleString("sv-SE")} SEK, {totalVinstProcent.toFixed(2)}%)</span>
+            <span className={`text-lg ${totalVinst >= 0 ? "text-emerald-400" : "text-red-400"}`}> ({totalVinst.toLocaleString("sv-SE")} SEK, {totalVinstProcent.toLocaleString("sv-SE", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%)</span>
           </p>
         </div>
       </div>
@@ -101,7 +101,7 @@ export const Home = () => {
                           vinst >= 0 ? "text-emerald-400" : "text-red-400"
                         }`}
                       >
-                        {vinst.toFixed(2)} SEK
+                        {vinst.toLocaleString("sv-SE", { minimumFractionDigits: 2 })} SEK
                       </td>
                       <td
                         className={`p-3 text-right font-semibold ${
@@ -110,7 +110,7 @@ export const Home = () => {
                             : "text-red-400"
                         }`}
                       >
-                        {vinstProcent.toFixed(1)} %
+                        {vinstProcent.toLocaleString("sv-SE", { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %
                       </td>
                       {/* Sälj alla aktier */}
                       <td className="p-3 text-right">
@@ -118,9 +118,7 @@ export const Home = () => {
                           onClick={() =>
                             salj(aktie.ticker, nuPris, aktie.antal)
                           }
-                          className="rounded-md px-4 py-2 text-sm font-semibold text-white shadow 
-               bg-[#e85566] hover:bg-[#d94452] active:scale-95 
-               active:bg-[#d94452] active:shadow-inner"
+                          className="rounded-md px-4 py-2 text-sm font-semibold text-white shadow bg-[#e85566] hover:bg-[#d94452] active:scale-95 active:bg-[#d94452] active:shadow-inner"
                         >
                           Sälj alla
                         </button>

@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, useCallback } from "react";
 import { seedAktier, type AktieSeed } from "../Data/seedAktier";
 import toast from "react-hot-toast";
 
@@ -9,6 +9,11 @@ type AktieMarknadContextType = {
   uppdateraTickInterval: (nyttInterval: number) => void;
   aterstallTickInterval: () => void;
   aterstallMarknad: () => void;
+
+  stress: number;
+  kraschSker: boolean;
+  simuleraKrasch: () => void;
+  aterstallStress: () => void;
 };
 
 // Skapa context
@@ -22,7 +27,45 @@ export function AktieMarknadProvider({ children }: { children: React.ReactNode }
     Object.fromEntries(seedAktier.map((s: AktieSeed) => [s.ticker, s.pris]))
   );
 
+  // Tick interval state
   const [tickInterval, setTickInterval] = useState<number>(5000);
+
+  // Stress nivå state
+  const [stress, setStress] = useState<number>(0);
+  const [kraschSker, setKraschSker] = useState<boolean>(false);
+
+  const stressRaknare = useCallback(() => {
+    const bas = 1 + Math.random() * 4; // Bas mellan 1-5
+    const faktorHastighet = 1000 / tickInterval;
+
+    // Skala stressökningen baserat på tickInterval
+    return Math.min(12, Math.round(bas * faktorHastighet));
+  }, [tickInterval]);
+
+  const simuleraKrasch = useCallback(() => {
+    if (kraschSker) return; // Undvik flera krascher samtidigt
+    setKraschSker(true);
+
+    setPriser((curr) => 
+      Object.fromEntries(
+        seedAktier.map((aktie) => {
+          const fall = 0.1 + Math.random() * 0.2; // Fall mellan 10%-30%
+          const nyttPris = Math.max(1, Math.round(curr[aktie.ticker] * (1 - fall)));
+          return [aktie.ticker, nyttPris];
+        })
+      )
+    );
+
+    toast.error("Börskrasch! Många aktier faller kraftigt i värde.");
+
+    // Återställ stress efter krasch
+    setStress(0);
+
+    // Återhämtning efter krasch
+    setTimeout(() => setKraschSker(false), 4000);
+  }, [kraschSker]);
+
+  const aterstallStress = () => setStress(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -30,10 +73,12 @@ export function AktieMarknadProvider({ children }: { children: React.ReactNode }
       setPriser((curr) =>
         Object.fromEntries(
           seedAktier.map((aktie) => {
-            const gammaltPris = curr[aktie.ticker];
+            const nuvarandePris = curr[aktie.ticker];
             const andringProcent =
-              (Math.random() - 0.4) * (aktie.volatilitet / 100); 
-            const nyttPris = Math.max(1, gammaltPris * (1 + andringProcent)); // Pris kan inte gå under 1
+              (Math.random() - 0.4) * (aktie.volatilitet / 100);
+
+            const reversion = (aktie.pris - nuvarandePris) * 0.001;
+            const nyttPris = Math.max(1, Number((nuvarandePris * (1 + andringProcent) + reversion).toFixed(2))); // Pris kan inte gå under 1
             return [aktie.ticker, Number(nyttPris.toFixed(2))];
           })
         )
@@ -72,10 +117,26 @@ export function AktieMarknadProvider({ children }: { children: React.ReactNode }
           );
         }
       }
+
+      // Uppdatera stress nivå
+      setStress((prev) => {
+        const nyStress = Math.min(100, prev + stressRaknare());
+        if (nyStress >= 100 && !kraschSker) {
+          const skaKrascha = Math.random() < 0.2; // 20% chans att krascha vid max stress
+          if (skaKrascha) {
+            simuleraKrasch();
+            return 0; // Återställ stress efter krasch
+          }
+          else {
+            return 0; // Återställ stress även om ingen krasch sker
+          }
+        }
+        return nyStress;
+      });
     }, tickInterval); // Uppdatera priser var 5:e sekund
 
     return () => clearInterval(interval);
-  }, [tickInterval]);
+  }, [tickInterval, kraschSker, simuleraKrasch, stressRaknare]);
 
   // Funktioner
   const uppdateraTickInterval = (nyttInterval: number) => {
@@ -88,6 +149,8 @@ export function AktieMarknadProvider({ children }: { children: React.ReactNode }
     setPriser(
       Object.fromEntries(seedAktier.map((s: AktieSeed) => [s.ticker, s.pris]))
     );
+    setStress(0);
+    setKraschSker(false);
   }
 
   return (
@@ -98,6 +161,10 @@ export function AktieMarknadProvider({ children }: { children: React.ReactNode }
         uppdateraTickInterval,
         aterstallTickInterval,
         aterstallMarknad,
+        stress,
+        kraschSker,
+        simuleraKrasch,
+        aterstallStress,
       }}
     >
       {children}

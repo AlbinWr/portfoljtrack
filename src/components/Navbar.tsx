@@ -7,6 +7,7 @@ import { GoGraph } from 'react-icons/go';
 import { MdContactSupport } from 'react-icons/md';
 import { LuSunDim, LuMoon } from 'react-icons/lu';
 import { useState, useEffect } from "react";
+import { StressBar } from "./stressBar";
 
 export const Navbar = () => {
   const { saldo } = useSaldo();
@@ -29,8 +30,9 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-zinc-50 dark:bg-slate-800 shadow-md flex items-center justify-between px-8 py-3 z-100">
+    <nav className="fixed top-0 left-0 w-full bg-zinc-50 dark:bg-slate-800 shadow-md flex flex-col justify-between z-100">
 
+    <div className="flex items-center justify-between px-8 py-3">
       {/* Logotyp */}
       <NavLink to="/">
         <div className="flex items-center gap-3 text-blue-400 dark:text-blue-400">
@@ -39,7 +41,7 @@ export const Navbar = () => {
       </NavLink>
 
       {/* Navigationslänkar */}
-      <div className="flex items-center gap-6 px-4">
+      <div className="flex items-center justify-between px-8 py-3 gap-2">
         {/* Hem / portfölj */}
         <NavLink
           to="/"
@@ -146,6 +148,8 @@ export const Navbar = () => {
           </button>
         </div>
       </div>
+      </div>
+        <StressBar />
     </nav>
   );
 };
