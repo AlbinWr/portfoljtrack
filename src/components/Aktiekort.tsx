@@ -11,17 +11,16 @@ export function Aktiekort({ item }: { item: AktieSeed }) {
 
   const [antal, setAntal] = useState(1);
 
+  const btn = "rounded-md px-4 py-2 text-sm font-semibold text-white shadow transition duration-150 active:scale-95 active:shadow-inner";
+
   return (
-    <div
-      className="rounded-lg border border-slate-200 dark:border-slate-700/60 bg-slate-50/70 dark:bg-slate-800/90 
-  backdrop-blur-md p-4 text-slate-900 dark:text-slate-100 shadow hover:shadow-lg transition-shadow duration-300"
-    >
+    // Aktiekort
+    <div className="rounded-lg border border-slate-200 dark:border-slate-700/60 bg-slate-50/70 dark:bg-slate-800/90 backdrop-blur-md p-4 text-slate-900 dark:text-slate-100 shadow hover:shadow-lg transition-shadow duration-300">
       <div className="flex items-center justify-between">
         <div className="text-sm text-sky-400 dark:text-slate-400">
           {item.ticker}
         </div>
-        <button
-          className="text-xs rounded-md border border-slate-600 px-2 py-1 active:shadow-inner active:scale-95 transition duration-150 hover:bg-slate-200 dark:hover:bg-slate-700">
+        <button className="text-xs rounded-md border border-slate-600 px-2 py-1 active:shadow-inner active:scale-95 transition duration-150 hover:bg-slate-200 dark:hover:bg-slate-700">
           Bevakning
         </button>
       </div>
@@ -62,14 +61,12 @@ export function Aktiekort({ item }: { item: AktieSeed }) {
 
         {/* Köp/Sälj knappar */}
         <div className="flex flex-col gap-2">
-          <button
+          <button 
             onClick={() => {
               kop(item.ticker, aktuelltPris, antal);
               setAntal(1);
             }}
-            className="rounded-md bg-[#00cba9] px-4 py-2 text-sm font-semibold text-white shadow 
-             hover:bg-[#00b59b] active:scale-95 active:bg-[#00b59b] active:shadow-inner 
-             transition duration-150"
+            className={`${btn} bg-[#00cba9] hover:bg-[#00b59b]`}
           >
             Köp
           </button>
@@ -79,7 +76,7 @@ export function Aktiekort({ item }: { item: AktieSeed }) {
               setAntal(1);
             }}
             disabled={antalAktier === 0}
-            className={`rounded-md px-4 py-2 text-sm font-semibold text-white shadow transition duration-150 ${
+            className={`${btn} ${
               antalAktier > 0
                 ? "bg-[#e85566] hover:bg-[#d94452] active:scale-95 active:bg-[#d94452] active:shadow-inner"
                 : "bg-gray-400 dark:bg-gray-600 cursor-not-allowed opacity-50"
