@@ -51,7 +51,7 @@ export const Navbar = () => {
               : "relative py-1 px-3 text-lg font-light text-slate-800 dark:text-white hover:text-sky-600 dark:hover:text-sky-300 rounded-2xl hover:bg-slate-200 dark:hover:bg-slate-700 transition duration-300 group hidden sm:block"
           }
         >
-          Home
+          Portfölj
           <span className="absolute left-0 -bottom-1 h-[2px] w-full origin-center scale-x-0 bg-sky-300 transition-transform duration-300 group-hover:scale-x-100"></span>
         </NavLink>
 

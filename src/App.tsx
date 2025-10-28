@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router";
 import { Navbar } from "./components/Navbar";
 import { PilUppBakgrund } from "./components/PilUppBakgrund";
 import { PilNerBakgrund } from "./components/PilNerBakgrund";
-import { Home } from "./routes/Home";
+import { Portfolj } from "./routes/Portfolj";
 import { Aktier } from "./routes/Aktier";
 import { Installningar } from "./routes/Installningar";
 import { SaldoProvider } from "./context/SaldoContext";
@@ -24,7 +24,7 @@ function App() {
               {/* Huvudinnehåll */}
               <main className="relative z-10 flex-1 pt-24 pb-10">
                 <Routes>
-                  <Route path="/" element={<Home />} />
+                  <Route path="/" element={<Portfolj />} />
                   <Route path="/aktier" element={<Aktier />} />
                   <Route path="/installningar" element={<Installningar />} />
                   <Route path="/kontakt" element={<Kontakta />} />

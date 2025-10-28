@@ -2,7 +2,7 @@ import { useSaldo } from "../hooks/useSaldo";
 import { usePortfolj } from "../context/portfoljContext";
 import { useAktieMarknad } from "../context/aktieMarknadContext";
 
-export const Home = () => {
+export const Portfolj = () => {
   const { saldo, startSaldo } = useSaldo();
   const { portfolj, salj } = usePortfolj();
   const { getAktiePris } = useAktieMarknad();
