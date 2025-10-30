@@ -22,7 +22,7 @@ export const Portfolj = () => {
       <h1 className="text-4xl font-bold">Portfölj</h1>
 
       {/* Summering högst upp */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-4xl px-4 mb-8 z-50 dark:text-gray-400">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-4xl px-4 mb-8 dark:text-gray-400">
         <div className="rounded-lg border border-slate-200 dark:border-slate-700/60 bg-slate-50/70 dark:bg-slate-800/90 backdrop-blur-md p-4 shadow-lg">
           <p className="text-sm ">Saldo</p>
           <p className="text-2xl font-bold text-orange-300">
@@ -80,7 +80,7 @@ export const Portfolj = () => {
                       className={
                         idx % 2 === 0
                           ? "text-slate-900 dark:text-gray-200 bg-slate-100 dark:bg-slate-900"
-                          : "text-slate-900 dark:text-gray-200 bg-slate-50 dark:bg-slate-800"
+                          : "text-slate-900 dark:text-gray-200 bg-white dark:bg-slate-800"
                       }
                     >
                       <td className="p-3 font-semibold text-sky-300">
@@ -118,7 +118,7 @@ export const Portfolj = () => {
                           onClick={() =>
                             salj(aktie.ticker, nuPris, aktie.antal)
                           }
-                          className="rounded-md px-4 py-2 text-sm font-semibold text-white shadow bg-[#e85566] hover:bg-[#d94452] active:scale-95 active:bg-[#d94452] active:shadow-inner"
+                          className="rounded-md px-4 py-2 text-sm font-semibold text-white shadow bg-[#e85566] hover:bg-[#d94452] active:scale-95 active:shadow-inner"
                         >
                           Sälj alla
                         </button>

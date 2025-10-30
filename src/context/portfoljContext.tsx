@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react"
 import { useSaldo } from "../hooks/useSaldo"
+import toast from "react-hot-toast"
 
 type PortfoljProviderProps = {
   children: React.ReactNode
@@ -39,7 +40,7 @@ export function PortfoljProvider({ children }: PortfoljProviderProps) {
   function kop(ticker: string, pris: number, antal: number) {
     const kostnad = pris * antal;
     if (kostnad > saldo) {
-      alert("Du har inte tillräckligt med cash!");
+      toast.error("Du har inte tillräckligt med cash!");
       return;
     }
     
