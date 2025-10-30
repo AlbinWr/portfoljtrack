@@ -76,7 +76,7 @@ export const Installningar = () => {
               onChange={(e) => setNyttTickInterval(e.target.value)}
               className="w-full bg-slate-100 inset-shadow-2xs font-normal dark:bg-slate-700 p-2 rounded text-slate-900 dark:text-white"
             >
-              <option value="1000">Snabb (1 sek)</option>
+              <option value="2000">Snabb (2 sek)</option>
               <option value="5000">Normal (5 sek)</option>
               <option value="10000">Långsam (10 sek)</option>
             </select>

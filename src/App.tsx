@@ -1,16 +1,20 @@
 import { Routes, Route } from "react-router";
+
+import { SaldoProvider } from "./context/SaldoContext";
+import { PortfoljProvider } from "./context/portfoljContext";
+import { AktieMarknadProvider } from "./context/aktieMarknadContext";
+
 import { Navbar } from "./components/Navbar";
 import { PilUppBakgrund } from "./components/PilUppBakgrund";
 import { PilNerBakgrund } from "./components/PilNerBakgrund";
+import { Footer } from "./components/Footer";
+
 import { Portfolj } from "./routes/Portfolj";
 import { Aktier } from "./routes/Aktier";
 import { Installningar } from "./routes/Installningar";
-import { SaldoProvider } from "./context/SaldoContext";
 import { Kontakta } from "./routes/Kontakta";
-import { PortfoljProvider } from "./context/portfoljContext";
-import { AktieMarknadProvider } from "./context/aktieMarknadContext";
+
 import { Toaster } from "react-hot-toast";
-import { Footer } from "./components/Footer";
   
 
 function App() {
@@ -19,9 +23,10 @@ function App() {
       <PortfoljProvider>
         <AktieMarknadProvider>
           <div className="relative flex flex-col min-h-screen bg-zinc-100 dark:bg-gradient-to-bl dark:from-slate-900 dark:via-sky-950 dark:to-slate-900">
+            {/* Navbar */}
             <Navbar />
 
-              {/* Huvudinnehåll */}
+              {/* Innehåll */}
               <main className="relative z-10 flex-1 pt-24 pb-10">
                 <Routes>
                   <Route path="/" element={<Portfolj />} />
@@ -36,6 +41,7 @@ function App() {
               <PilNerBakgrund />
               <Toaster position="bottom-right" />
             </div>
+            {/* Footer */}
             <Footer />
         </AktieMarknadProvider>
       </PortfoljProvider>
