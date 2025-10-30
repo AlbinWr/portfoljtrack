@@ -36,7 +36,6 @@ export const Navbar = () => {
   const inaktivLink =
     basLink +
     " text-slate-800 dark:text-white hover:text-sky-600 dark:hover:text-sky-300 hover:bg-slate-200 dark:hover:bg-slate-700";
-
   interface NavItemProps {
     to: string;
     label: string;
@@ -71,7 +70,7 @@ export const Navbar = () => {
 
         {/* Navigationslänkar */}
         <div className="flex items-center justify-between px-8 py-3 gap-2">
-          <NavItem to="/" label="Portfölj" hiddenMobile/>
+          <NavItem to="/" label="Portfölj" hiddenMobile />
           <NavItem to="/aktier" label="Aktier" Icon={GoGraph} />
           <NavItem to="/installningar" label="Inställningar" Icon={DiAptana} />
           <NavItem to="/kontakt" label="Kontakta" Icon={MdContactSupport} />
